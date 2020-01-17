@@ -19,11 +19,25 @@ public class Solution {
 
     public static int getMinimum(List<Integer> array) {
         // Найти минимум тут
-        return 0;
+        int min = array.get(0);
+        for (int i = 1; i < array.size(); i++) {
+            if (min > array.get(i))
+                min = array.get(i);
+        }
+
+        return min;
     }
 
     public static List<Integer> getIntegerList() throws IOException {
         // Создать и заполнить список тут
-        return null;
+        List<Integer> list = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.valueOf(reader.readLine());
+        for (int i = 0; i < n; i++) {
+            list.add(Integer.valueOf(reader.readLine()));
+        }
+
+        return list;
     }
 }
