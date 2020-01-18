@@ -15,11 +15,11 @@ public class Solution {
     interface Desire {
     }
 
-    interface Dream implements Hobby {
+    interface Dream {
         public static Hobby HOBBY = new Hobby();
     }
 
-    static class Hobby extends Desire, Dream {
+    static class Hobby implements Desire, Dream {
         static int INDEX = 1;
 
         @Override

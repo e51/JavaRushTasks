@@ -10,7 +10,7 @@ public class Solution {
         System.out.println(translator.translate());
     }
 
-    public abstract static class Translator {
+    public static class Translator {
         public String translate() {
             return "Я переводчик с английского";
         }

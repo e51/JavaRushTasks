@@ -11,12 +11,12 @@ import java.util.Map;
 */
 
 public class Solution {
-    HashMap<int, String> map;
+    HashMap<Integer, String> map;
     static Integer index;
     static String name;
 
     public Solution() {
-        this.map = new HashMap<int, String>();
+        this.map = new HashMap<Integer, String>();
         map.put(index, name);
     }
 
@@ -30,7 +30,7 @@ public class Solution {
             solution.map.put(index, name);
         }
 
-        for (Map.Entry<int, String> pair : solution.map.entrySet()) {
+        for (Map.Entry<Integer, String> pair : solution.map.entrySet()) {
             index = pair.getKey();
             name = pair.getValue();
             System.out.println("Id=" + index + " Name=" + name);

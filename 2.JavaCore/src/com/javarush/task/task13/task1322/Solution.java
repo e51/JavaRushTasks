@@ -13,4 +13,12 @@ public class Solution {
         SimpleObject<T> getInstance();
     }
 
+    public static class StringObject<T> implements SimpleObject{
+
+        @Override
+        public SimpleObject<T> getInstance() {
+            return null;
+        }
+    }
+
 }

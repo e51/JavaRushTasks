@@ -16,8 +16,19 @@ public class Solution {
         }
 
         // напишите тут ваш код
+        int min = inputArray[0];
+        int max = inputArray[0];
 
-        return new Pair<Integer, Integer>(0, 0);
+        for (int i = 1; i < inputArray.length; i++) {
+            if (min > inputArray[i]) {
+                min = inputArray[i];
+            }
+            if (max < inputArray[i]) {
+                max = inputArray[i];
+            }
+        }
+
+        return new Pair<Integer, Integer>(min, max);
     }
 
     public static class Pair<X, Y> {

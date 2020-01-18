@@ -30,6 +30,36 @@ public class Solution {
 
     public static void sort(String[] array) {
         // напишите тут ваш код
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                if (isNumber(array[j])) {
+                    for (int k = j + 1; k < array.length; k++) {
+                        if (isNumber(array[k])) {
+                            if (Integer.valueOf(array[j]) < Integer.valueOf(array[k])) {
+                                // swap
+                                String tmp = array[j];
+                                array[j] = array[k];
+                                array[k] = tmp;
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    for (int k = j + 1; k < array.length; k++) {
+                        if (!isNumber(array[k])) {
+                            if (isGreaterThan(array[j], array[k])) {
+                                // swap
+                                String tmp = array[j];
+                                array[j] = array[k];
+                                array[k] = tmp;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     // Метод для сравнения строк: 'а' больше чем 'b'

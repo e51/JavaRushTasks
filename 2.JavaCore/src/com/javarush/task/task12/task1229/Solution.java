@@ -15,7 +15,14 @@ public class Solution {
         public void workHard();
     }
 
-    public static class CTO implements Businessman {
+    public static class CTO extends Employee implements Businessman {
 
+    }
+
+    public static class Employee implements Businessman {
+        @Override
+        public void workHard() {
+
+        }
     }
 }
