@@ -10,5 +10,9 @@ public class Solution {
     }
 
     //add an interface here - добавь интерфейс тут
+    public interface CanFly {
+        void fly();
+        void stopFly();
+    }
 
 }

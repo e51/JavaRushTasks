@@ -20,10 +20,16 @@ public class Solution {
     }
 
     public static class Cat extends Pet {
-
+        @Override
+        public Cat getChild() {
+            return new Cat();
+        }
     }
 
     public static class Dog extends Pet {
-
+        @Override
+        public Dog getChild() {
+            return new Dog();
+        }
     }
 }

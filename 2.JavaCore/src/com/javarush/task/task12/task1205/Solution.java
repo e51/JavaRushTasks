@@ -14,6 +14,15 @@ public class Solution {
 
     public static String getObjectType(Object o) {
         //Напишите тут ваше решение
+        if (o instanceof Cow) {
+            return "Корова";
+        }
+        if (o instanceof Dog) {
+            return "Собака";
+        }
+        if (o instanceof Whale) {
+            return "Кит";
+        }
 
         return "Неизвестное животное";
     }

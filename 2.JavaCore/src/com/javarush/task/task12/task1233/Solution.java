@@ -20,8 +20,16 @@ public class Solution {
         }
 
         //напишите тут ваш код
+        int min = array[0];
+        int position = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i];
+                position = i;
+            }
+        }
 
-        return new Pair<Integer, Integer>(0, 0);
+        return new Pair<Integer, Integer>(min, position);
     }
 
 
