@@ -12,7 +12,11 @@ public class Solution {
         SimpleObject<T> getInstance();
     }
 
-    class StringObject //допишите здесь ваш код
+    class StringObject<T> implements SimpleObject<String> //допишите здесь ваш код
     {
+        @Override
+        public SimpleObject<String> getInstance() {
+            return null;
+        }
     }
 }

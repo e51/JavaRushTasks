@@ -16,7 +16,16 @@ public class Solution {
         void refresh();
     }
 
-    class Screen {
+    class Screen implements Updatable {
 
+        @Override
+        public void onSelect() {
+
+        }
+
+        @Override
+        public void refresh() {
+
+        }
     }
 }
