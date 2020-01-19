@@ -22,6 +22,9 @@ public class Solution {
             this.name = name;
             this.allMoney = new ArrayList<Money>();
             //напишите тут ваш код
+            allMoney.add(new USD(100));
+            allMoney.add(new Ruble(1000));
+            allMoney.add(new Hrivna(500));
         }
 
         private List<Money> allMoney;

@@ -16,10 +16,11 @@ public class Solution {
 
     public static void printMainInfo(Object object) {
         //напишите тут ваш код
+        if (object instanceof Movable) ((Movable) object).move();
+        if (object instanceof Drawable) ((Drawable) object).draw();
     }
 
     static interface Movable {
-
         void move();
     }
 

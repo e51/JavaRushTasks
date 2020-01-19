@@ -4,9 +4,27 @@ package com.javarush.task.task14.task1414;
 MovieFactory
 */
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class Solution {
     public static void main(String[] args) throws Exception {
         //ввести с консоли несколько ключей (строк), пункт 7
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        String key = null;
+
+        while (true) {
+            key = reader.readLine();
+            if ("soapOpera".equals(key) || "cartoon".equals(key) || "thriller".equals(key)) {
+                Movie movie = MovieFactory.getMovie(key);
+                System.out.println(movie.getClass().getSimpleName());
+            } else {
+                Movie movie = MovieFactory.getMovie(key);
+                break;
+            }
+        }
 
         /*
 8 Создать переменную movie класса Movie и для каждой введенной строки(ключа):
@@ -28,6 +46,15 @@ public class Solution {
 
             //напишите тут ваш код, пункты 5,6
 
+            if ("cartoon".equals(key)) {
+                movie = new Cartoon();
+            }
+
+            if ("thriller".equals(key)) {
+                movie = new Thriller();
+            }
+
+
             return movie;
         }
     }
@@ -36,6 +63,12 @@ public class Solution {
     }
 
     static class SoapOpera extends Movie {
+    }
+
+    static class Cartoon extends Movie {
+    }
+
+    static class Thriller extends Movie {
     }
 
     //Напишите тут ваши классы, пункт 3
