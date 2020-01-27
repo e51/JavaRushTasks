@@ -30,7 +30,13 @@ public class Solution {
         HashMap<String, Integer> result = new HashMap<String, Integer>();
 
         //напишите тут ваш код
-
+        for (String item : list) {
+            if (result.containsKey(item)) {
+                result.put(item, result.get(item) + 1);
+            } else {
+                result.put(item, 1);
+            }
+        }
 
         return result;
     }
