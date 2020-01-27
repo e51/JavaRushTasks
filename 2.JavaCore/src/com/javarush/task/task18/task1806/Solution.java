@@ -10,18 +10,22 @@ import java.io.IOException;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        FileInputStream inputStream = new FileInputStream("c:/data.txt");
+//        FileInputStream inputStream = new FileInputStream("c:/data.txt");
+        FileInputStream inputStream = new FileInputStream("/dev/temp/file.txt");
         // Создаем поток-записи-байт-в-файл
-        FileOutputStream outputStream = new FileOutputStream("c:/result.txt");
+//        FileOutputStream outputStream = new FileOutputStream("c:/result.txt");
+        FileOutputStream outputStream = new FileOutputStream("/dev/temp/file2.txt");
 
-        if (inputStream.read() >= 0) {
+        if (inputStream.available() > 0) {
             //читаем весь файл одним куском
             byte[] buffer = new byte[inputStream.available()];
             int count = inputStream.read(buffer);
+//            inputStream.read(buffer);
             outputStream.write(buffer, 0, count);
+//            outputStream.write(buffer);
         }
 
-        inputStream.reset();
-        outputStream.flush();
+        inputStream.close();
+        outputStream.close();
     }
 }
