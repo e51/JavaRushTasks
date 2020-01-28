@@ -6,6 +6,8 @@ public class Solution {
     public static void main(String[] args) {
         TestedThread commonThread = new TestedThread(handler);
 
+        Thread.setDefaultUncaughtExceptionHandler(handler);
+
         Thread threadA = new Thread(commonThread, "Нить 1");
         Thread threadB = new Thread(commonThread, "Нить 2");
 

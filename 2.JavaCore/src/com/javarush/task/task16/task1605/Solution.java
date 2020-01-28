@@ -28,7 +28,7 @@ public class Solution {
         Date stopPlaying();
     }
 
-    public static class Violin {
+    public static class Violin implements MusicalInstrument {
         private String owner;
 
         public Violin(String owner) {
@@ -43,6 +43,14 @@ public class Solution {
         public Date stopPlaying() {
             System.out.println(this.owner + " is stopping playing");
             return new Date();
+        }
+
+        @Override
+        public void run() {
+            Date start = startPlaying();
+            sleepNSeconds(1);
+            Date end = stopPlaying();
+            System.out.println("Playing " + (end.getTime() - start.getTime()) + " ms");
         }
     }
 }

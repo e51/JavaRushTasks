@@ -8,8 +8,26 @@ public class Solution {
         new Thread(new CountUpRunnable(), "Увеличиваем").start();
     }
 
-    public static class CountUpRunnable {
+    public static class CountUpRunnable implements Runnable {
         //Add your code here - добавь код тут
+        private int countIndexUp = 1;
+
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    Thread.sleep(500);
+                    System.out.println(toString());
+                    countIndexUp += 1;
+                    if (countIndexUp > Solution.number) return;
+                }
+            } catch (InterruptedException e) {
+            }
+        }
+
+        public String toString() {
+            return Thread.currentThread().getName() + ": " + countIndexUp;
+        }
     }
 
 

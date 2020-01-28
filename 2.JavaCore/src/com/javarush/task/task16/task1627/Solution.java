@@ -49,6 +49,25 @@ public class Solution {
         @Override
         public void run() {
             //Add your code here - добавь код тут
+            int step = 0;
+
+            while (step < OnlineGame.steps.size()) {
+                try {
+                    System.out.println(getName() + ":" + OnlineGame.steps.get(step));
+                    step++;
+                    Thread.sleep(1000 / rating);
+                } catch (InterruptedException e) {
+                    System.out.println(getName() + ":проиграл");
+                    return;
+                    //e.printStackTrace();
+                }
+            }
+
+            if (!OnlineGame.isWinnerFound) {
+                OnlineGame.isWinnerFound = true;
+                System.out.println(getName() + ":победитель!");
+            }
+
         }
     }
 }
