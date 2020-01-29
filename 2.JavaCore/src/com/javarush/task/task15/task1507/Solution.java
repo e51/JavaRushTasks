@@ -9,7 +9,16 @@ public class Solution {
         printMatrix(2, 3, "8");
     }
 
-    public static void printMatrix(int m, int n, String value) {
+    public static void printMatrix(int m, String n, String value) {}
+    public static void printMatrix(String m, String n, String value) {}
+    public static void printMatrix(Object m, String n, String value) {}
+    public static void printMatrix(Object m, Integer n, String value) {}
+    public static void printMatrix(int m, Integer n, String value) {}
+    public static void printMatrix(int m, int n, int value) {}
+    public static void printMatrix(double m, int n, int value) {}
+    public static void printMatrix(double m, double n, int value) {}
+
+        public static void printMatrix(int m, int n, String value) {
         System.out.println("Заполняем объектами String");
         printMatrix(m, n, (Object) value);
     }

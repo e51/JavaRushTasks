@@ -21,6 +21,10 @@ public class Solution {
     public static class Hrivna extends Money {
         private double amount = 123d;
 
+        public Double getAmount() {
+            return amount;
+        }
+
         public Hrivna getMoney() {
             return this;
         }

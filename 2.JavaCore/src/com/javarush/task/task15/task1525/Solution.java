@@ -1,9 +1,6 @@
 package com.javarush.task.task15.task1525;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +10,26 @@ import java.util.List;
 
 public class Solution {
     public static List<String> lines = new ArrayList<String>();
+
+    static {
+        BufferedReader inputStream = null;
+        try {
+            inputStream = new BufferedReader(new InputStreamReader(new FileInputStream(Statics.FILE_NAME)));
+
+            while (inputStream.ready()) {
+                lines.add(inputStream.readLine());
+            }
+        } catch (IOException e) {
+
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
     public static void main(String[] args) {
         System.out.println(lines);

@@ -9,6 +9,7 @@ public class Solution {
 
     static {
         //throw an exception here - выбросьте эксепшн тут
+        System.out.println(5 / 0);
     }
 
     public static int B = 5;
