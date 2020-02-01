@@ -85,6 +85,9 @@ public class Space {
      */
     public void moveAllItems() {
         //нужно получить список всех игрвых объектов и у каждого вызвать метод move().
+        for (BaseObject item : getAllItems()) {
+            item.move();
+        }
     }
 
     /**
@@ -92,6 +95,14 @@ public class Space {
      */
     public List<BaseObject> getAllItems() {
         //нужно создать новый список и положить в него все игровые объекты.
+        List<BaseObject> allObjects = new ArrayList<>();
+
+        allObjects.addAll(getBombs());
+        allObjects.addAll(getRockets());
+        allObjects.addAll(getUfos());
+        allObjects.add(getShip());
+
+        return allObjects;
     }
 
     /**
@@ -146,7 +157,7 @@ public class Space {
         this.ship = ship;
     }
 
-    public ArrayList<Ufo> getUfos() {
+    public List<Ufo> getUfos() {
         return ufos;
     }
 
@@ -158,11 +169,11 @@ public class Space {
         return height;
     }
 
-    public ArrayList<Bomb> getBombs() {
+    public List<Bomb> getBombs() {
         return bombs;
     }
 
-    public ArrayList<Rocket> getRockets() {
+    public List<Rocket> getRockets() {
         return rockets;
     }
 
