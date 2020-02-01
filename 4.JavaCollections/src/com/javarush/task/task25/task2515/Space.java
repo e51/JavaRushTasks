@@ -6,7 +6,7 @@ import java.util.List;
 public class Space {
     private int width;
     private int height;
-    private SpaceShip ship = new SpaceShip();
+    private SpaceShip ship;
     private List<Ufo> ufos = new ArrayList<>();
     private List<Rocket> rockets = new ArrayList<>();
     private List<Bomb> bombs = new ArrayList<>();
