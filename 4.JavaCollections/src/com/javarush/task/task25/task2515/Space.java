@@ -2,6 +2,7 @@ package com.javarush.task.task25.task2515;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -111,6 +112,8 @@ public class Space {
     public void createUfo() {
         //тут нужно создать новый НЛО.
         //1 раз за 10 вызовов метода.
+        if (getUfos().isEmpty())
+            getUfos().add(new Ufo(width / 2, 0));
     }
 
     /**
@@ -120,6 +123,15 @@ public class Space {
      */
     public void checkBombs() {
         //тут нужно проверить все возможные столкновения для каждой бомбы.
+        for (Bomb bomb : getBombs()) {
+            if (bomb.isIntersect(getShip())) {
+                bomb.die();
+                ship.die();
+                break;
+            } else if (bomb.getY() > game.height) {
+                bomb.die();
+            }
+        }
     }
 
     /**
@@ -129,6 +141,19 @@ public class Space {
      */
     public void checkRockets() {
         //тут нужно проверить все возможные столкновения для каждой ракеты.
+        for (Rocket rocket : getRockets()) {
+            if (rocket.getY() < 0) {
+                rocket.die();
+            } else {
+                for (Ufo ufo : getUfos()) {
+                    if (rocket.isIntersect(ufo)) {
+                        rocket.die();
+                        ufo.die();
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -137,6 +162,23 @@ public class Space {
     public void removeDead() {
         //тут нужно удалить все умершие объекты из списков.
         //Кроме космического корабля - по нему определяем идет еще игра или нет.
+        Iterator<Ufo> iteratorUfo = getUfos().iterator();
+        while (iteratorUfo.hasNext()) {
+            if (!iteratorUfo.next().isAlive())
+                iteratorUfo.remove();
+        }
+
+        Iterator<Bomb> iteratorBombs = getBombs().iterator();
+        while (iteratorBombs.hasNext()) {
+            if (!iteratorBombs.next().isAlive())
+                iteratorBombs.remove();
+        }
+
+        Iterator<Rocket> iteratorRocket = getRockets().iterator();
+        while (iteratorRocket.hasNext()) {
+            if (!iteratorRocket.next().isAlive())
+                iteratorRocket.remove();
+        }
     }
 
     /**
