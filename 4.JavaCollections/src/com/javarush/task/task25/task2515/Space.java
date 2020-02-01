@@ -104,6 +104,7 @@ public class Space {
         allObjects.add(getShip());
 
         return allObjects;
+        
     }
 
     /**
