@@ -13,6 +13,19 @@ public abstract class BaseObject {
         isAlive = true;
     }
 
+    public abstract void move();
+
+    public abstract void draw();
+
+    public void die() {
+        isAlive = false;
+    }
+
+    public boolean isIntersect(BaseObject o) {
+        double distance = Math.sqrt((x - o.getX())*(x - o.getX()) + (y - o.getY())*(y - o.getY()));
+        return distance < Math.max(radius, o.getRadius());
+    }
+
     public boolean isAlive() {
         return isAlive;
     }
