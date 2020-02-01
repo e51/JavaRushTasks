@@ -7,7 +7,7 @@ public class Ufo extends BaseObject {
 
     @Override
     public void move() {
-
+        
     }
 
     @Override
