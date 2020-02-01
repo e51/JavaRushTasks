@@ -9,7 +9,8 @@ public class SpaceShip extends BaseObject {
 
     @Override
     public void move() {
-
+        x = x + dx;
+        checkBorders(0, Space.game.getWidth(), 0, Space.game.getHeight());
     }
 
     @Override
@@ -23,5 +24,10 @@ public class SpaceShip extends BaseObject {
 
     public void moveRight() {
         dx = 1;
+    }
+
+    public void fire() {
+        Space.game.getRockets().add(new Rocket(x - 2, y));
+        Space.game.getRockets().add(new Rocket(x + 2, y));
     }
 }
