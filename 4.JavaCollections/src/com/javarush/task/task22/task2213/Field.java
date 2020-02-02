@@ -25,7 +25,9 @@ public class Field {
 
     public void print() {}
 
-    public void removeFullLines() {}
+    public void removeFullLines() {
+
+    }
 
     public Integer getValue(int x, int y) {
         return 0;
