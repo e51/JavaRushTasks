@@ -3,6 +3,7 @@ package com.javarush.task.task20.task2028;
 import java.io.Serializable;
 import java.util.AbstractList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 /* 
@@ -10,6 +11,88 @@ import java.util.List;
 */
 
 public class CustomTree extends AbstractList<String> implements Cloneable, Serializable {
+
+    Entry<String> root;
+    int size;
+
+    public CustomTree() {
+        this.root = new Entry<>("root");
+        size = 0;
+    }
+
+    @Override
+    public boolean add(String s) {
+        LinkedList<Entry<String>> queue = new LinkedList<>();
+
+        queue.add(root);
+
+        Entry<String> entry = null;
+        Entry<String> newElement = new Entry<>(s);
+
+        while (!queue.isEmpty()) {
+            entry = queue.poll();
+            if (entry.availableToAddLeftChildren) {
+                // add to the left child
+                entry.leftChild = newElement;
+                newElement.parent = entry;
+                //entry.checkChildren();
+                entry.availableToAddLeftChildren = false;
+                size++;
+                break;
+            } else {
+                if (entry.leftChild != null) {
+                    queue.add(entry.leftChild);
+                }
+            }
+
+            if (entry.availableToAddRightChildren) {
+                // add to the right child
+                entry.rightChild = newElement;
+                newElement.parent = entry;
+                //entry.checkChildren();
+                entry.availableToAddRightChildren = false;
+                size++;
+                break;
+            } else {
+                if (entry.rightChild != null) {
+                    queue.add(entry.rightChild);
+                }
+            }
+        }
+
+        return true;
+
+    }
+
+    public String getParent(String s) {
+        LinkedList<Entry<String>> queue = new LinkedList<>();
+
+        queue.add(root);
+
+        Entry<String> entry = null;
+        Entry<String> result = null;
+
+        while (!queue.isEmpty()) {
+            entry = queue.poll();
+
+            if (entry.elementName.equals(s)) {
+                result = entry.parent;
+                break;
+            }
+
+            if (!entry.availableToAddLeftChildren) {
+                queue.add(entry.leftChild);
+            }
+
+            if (!entry.availableToAddRightChildren) {
+                queue.add(entry.rightChild);
+            }
+
+        }
+
+        return result == null ? null : result.elementName;
+    }
+
 
     @Override
     public boolean addAll(int index, Collection<? extends String> c) {
@@ -44,18 +127,20 @@ public class CustomTree extends AbstractList<String> implements Cloneable, Seria
     @Override
     public String get(int index) {
         throw new UnsupportedOperationException();
-//        return null;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     static class Entry<T> implements Serializable {
         String elementName;
-        boolean availableToAddLeftChildren, availableToAddRightChildren;
-        Entry<T> parent, leftChild, rightChild;
+        boolean availableToAddLeftChildren;
+        boolean availableToAddRightChildren;
+        Entry<T> parent;
+        Entry<T> leftChild;
+        Entry<T> rightChild;
 
         public Entry(String elementName) {
             this.elementName = elementName;
