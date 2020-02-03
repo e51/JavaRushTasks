@@ -26,6 +26,22 @@ public class Hippodrome {
         game.getHorses().add(horse3);
 
         game.run();
+        game.printWinner();
+    }
+
+    public Horse getWinner() {
+
+        Horse winner = null;
+        for (Horse horse : horses) {
+            if (winner == null || winner.getDistance() < horse.getDistance())
+                winner = horse;
+        }
+
+        return winner;
+    }
+
+    public void printWinner() {
+        System.out.println("Winner is " + getWinner().getName() + "!");
     }
 
     public void run() throws InterruptedException {
