@@ -25,4 +25,8 @@ public class Hippodrome {
         game.getHorses().add(horse2);
         game.getHorses().add(horse3);
     }
+
+    public void run() {}
+    public void move() {}
+    public void print() {}
 }
