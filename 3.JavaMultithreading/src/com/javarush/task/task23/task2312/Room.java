@@ -50,10 +50,15 @@ public class Room {
         Snake snake = new Snake(5, 5);
         game = new Room(20, 10, snake);
         snake.setDirection(SnakeDirection.DOWN);
+        game.createMouse();
+        game.run();
 
     }
 
+    public void sleep() {}
+
     public void run() {}
+
     public void print() {}
 
     public void createMouse() {
