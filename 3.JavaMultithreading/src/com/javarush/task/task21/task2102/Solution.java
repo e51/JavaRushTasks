@@ -17,7 +17,11 @@ public class Solution {
     }
 
     public static boolean isModifierSet(int allModifiers, int specificModifier) {
-        return false;
+//        System.out.println(Integer.toBinaryString(((allModifiers) & 0xFF) + 0x100).substring(1));
+//        System.out.println(Integer.toBinaryString(((specificModifier) & 0xFF) + 0x100).substring(1));
+//        System.out.println(Integer.toBinaryString(((allModifiers & specificModifier) & 0xFF) + 0x100).substring(1));
+
+        return (allModifiers & specificModifier) == specificModifier;
     }
 
     private static Method getMainMethod() {

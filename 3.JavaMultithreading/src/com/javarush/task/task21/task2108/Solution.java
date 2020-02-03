@@ -8,7 +8,7 @@ public class Solution {
         Tree tree = new Tree("willow", new String[]{"s1", "s2", "s3", "s4"});
         Tree clone = null;
         try {
-            clone = tree.clone();
+            clone = (Tree) tree.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
@@ -20,7 +20,7 @@ public class Solution {
         System.out.println(clone.branches);
     }
 
-    public static class Plant{
+    public static class Plant {
         private String name;
 
         public Plant(String name) {
@@ -32,7 +32,7 @@ public class Solution {
         }
     }
 
-    public static class Tree extends Plant {
+    public static class Tree extends Plant implements Cloneable {
         private String[] branches;
 
         public Tree(String name, String[] branches) {
@@ -42,6 +42,16 @@ public class Solution {
 
         public String[] getBranches() {
             return branches;
+        }
+
+        @Override
+        public Object clone() throws CloneNotSupportedException {
+            Tree clone = new Tree(new String(this.getName()), new String[getBranches().length]);
+            for (int i = 0; i < this.getBranches().length; i++) {
+                clone.branches[i] = new String(this.getBranches()[i]);
+            }
+
+            return clone;
         }
     }
 }
