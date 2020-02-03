@@ -25,6 +25,7 @@ public class Hippodrome {
         game.getHorses().add(horse2);
         game.getHorses().add(horse3);
 
+        game.run();
     }
 
     public void run() throws InterruptedException {
