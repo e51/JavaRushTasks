@@ -15,7 +15,7 @@ public class Hippodrome {
         return horses;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         game = new Hippodrome(new ArrayList<>());
         Horse horse1 = new Horse("Bukovka", 3, 0);
         Horse horse2 = new Horse("Lyutik", 3, 0);
@@ -24,9 +24,18 @@ public class Hippodrome {
         game.getHorses().add(horse1);
         game.getHorses().add(horse2);
         game.getHorses().add(horse3);
+
     }
 
-    public void run() {}
+    public void run() throws InterruptedException {
+        for (int i = 1; i <= 100; i++) {
+            move();
+            print();
+            Thread.sleep(200);
+        }
+    }
+
     public void move() {}
+
     public void print() {}
 }
