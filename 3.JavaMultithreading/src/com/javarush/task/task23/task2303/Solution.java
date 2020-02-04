@@ -5,7 +5,8 @@ package com.javarush.task.task23.task2303;
 */
 public class Solution {
 
-    public static class Listener {
+    public static abstract class Listener {
+
         public void onMouseDown(int x, int y) {
             // Do something when the mouse down event occurs
         }
@@ -16,6 +17,5 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-
     }
 }

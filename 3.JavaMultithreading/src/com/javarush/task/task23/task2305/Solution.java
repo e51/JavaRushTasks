@@ -10,8 +10,23 @@ public class Solution {
     }
 
     public static Solution[] getTwoSolutions() {
+        Solution[] result = new Solution[2];
+//        result[0] = new Solution();
+//        result[0].innerClasses[0] = result[0].new InnerClass();
+//        result[0].innerClasses[1] = result[0].new InnerClass();
+//
+//        result[1] = new Solution();
+//        result[1].innerClasses[0] = result[1].new InnerClass();
+//        result[1].innerClasses[1] = result[1].new InnerClass();
 
-        return null;
+        for (int i = 0; i < 2; i++) {
+            result[i] = new Solution();
+            for (int j = 0; j < 2; j++) {
+                result[i].innerClasses[j] = result[i].new InnerClass();
+            }
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {
