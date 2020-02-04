@@ -10,6 +10,11 @@ public class Arkanoid {
     private Stand stand;
     private List<Brick> bricks;
 
+    static Arkanoid game;
+
+    public void run() {}
+    public void move() {}
+
     public Ball getBall() {
         return ball;
     }
