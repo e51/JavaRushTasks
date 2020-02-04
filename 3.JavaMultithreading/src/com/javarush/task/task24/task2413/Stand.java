@@ -2,7 +2,7 @@ package com.javarush.task.task24.task2413;
 
 public class Stand extends BaseObject {
     private double speed;
-    private double direction;
+    private double direction; //-1, 0, 1
 
     public double getSpeed() {
         return speed;
@@ -25,6 +25,15 @@ public class Stand extends BaseObject {
 
     @Override
     public void move() {
+        x = x + speed * direction;
 
+    }
+
+    void moveLeft() {
+        direction = -1;
+    }
+
+    void moveRight() {
+        direction = 1;
     }
 }
