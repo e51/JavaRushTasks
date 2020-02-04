@@ -26,6 +26,8 @@ public class Solution {
 
         editUserView.fireEventUserDeleted(124);
 
+        editUserView.fireEventUserChanged("Bob", 125, 3);
+
         usersView.fireEventShowDeletedUsers();
     }
 }
