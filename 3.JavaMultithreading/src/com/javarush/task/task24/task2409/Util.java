@@ -2,6 +2,7 @@ package com.javarush.task.task24.task2409;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Util {
     protected static Collection<Object[]> jeansArray = new LinkedList<>();
@@ -16,6 +17,62 @@ public class Util {
     public static List<Jeans> getAllJeans() {
 
         //add your code here
+
+        abstract class AbstractJeans implements Jeans {
+
+            @Override
+            public int getLength() {
+                return 0;
+            }
+
+            @Override
+            public int getSize() {
+                return 0;
+            }
+
+            @Override
+            public int getId() {
+                return 0;
+            }
+
+            @Override
+            public double getPrice() {
+                return 0;
+            }
+
+            @Override
+            public String toString() {
+                return String.format("%s{id=%d, length=%d, size=%d, price=%f}", getClass().getSimpleName()/*getTM()*/, getId(), getLength(), getSize(), getPrice());
+            }
+
+            public AbstractJeans(int id, int length, int size, double price) {
+            }
+        }
+
+        class Levis extends AbstractJeans {
+
+            @Override
+            public String getTM() {
+                return Company.Levis.fullName;
+            }
+
+            public Levis(int id, int length, int size, double price) {
+                super(id, length, size, price);
+            }
+        }
+
+        class Denim extends AbstractJeans {
+
+            @Override
+            public String getTM() {
+                return Company.Denim.fullName;
+            }
+
+            public Denim(int id, int length, int size, double price) {
+                super(id, length, size, price);
+            }
+        }
+
 
         List<Jeans> allJeans = new LinkedList<>();
 

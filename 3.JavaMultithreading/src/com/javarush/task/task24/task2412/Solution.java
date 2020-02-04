@@ -36,16 +36,46 @@ public class Solution {
             double change = !stock.containsKey("change") ? 0 : ((double) stock.get("change"));
             Date date = (Date) stock.get("date");
             Object[] testArgs = {name, symbol, open, last, change, date, date.getTime()};
-            System.out.println(pattform.format(testArgs));
+//            System.out.println(pattform.format(testArgs));
         }
     }
 
     public static void sort(List<Stock> list) {
-        list.sort(new Comparator<Stock>() {
+//        list.sort(new Comparator<Stock>() {
+//            public int compare(Stock stock1, Stock stock2) {
+//                return 0;
+//            }
+//        });
+
+        Collections.sort(list, new Comparator<Stock>() {
             public int compare(Stock stock1, Stock stock2) {
+                int first = ((String) stock1.get("name")).compareTo((String) stock2.get("name"));
+                if (first != 0) {
+                    return first;
+                }
+
+                Date date1 = (Date) stock1.get("date");
+                Date date2 = (Date) stock2.get("date");
+                date1.setMinutes(0);                date1.setHours(0);                date1.setSeconds(0);
+                date2.setMinutes(0);                date2.setHours(0);                date2.setSeconds(0);
+
+                int second = date1.compareTo(date2) * -1;
+
+                if (second != 0) {
+                    return second;
+                }
+
+                if (stock1.containsKey("open") && stock2.containsKey("open")) {
+                    Double value1 = (Double) stock1.get("last") - (Double) stock1.get("open");
+                    Double value2 = (Double) stock2.get("last") - (Double) stock2.get("open");
+
+                    return value2.compareTo(value1);
+                }
+
                 return 0;
             }
         });
+
     }
 
     public static class Stock extends HashMap<String, Object> {

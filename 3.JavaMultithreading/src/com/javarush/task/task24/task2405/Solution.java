@@ -13,6 +13,36 @@ public class Solution implements Action {
 
         public void someAction() {
             //!!!!! Все изменения должны быть только тут
+
+            for (int i = param; i > 0; i--) {
+                System.out.println(i);
+            }
+
+            while (true) {
+                if (param > 0) {
+                    new FirstClass() {
+                        @Override
+                        public Action getDependantAction() {
+                            return null;
+                        }
+
+                        @Override
+                        public void someAction() {
+                            super.someAction();
+                        }
+                    }.someAction();
+                    param = 0;
+
+                } else {
+                    SecondClass secondClass = new SecondClass();
+                    secondClass.sb.append(SecondClass.SPECIFIC_ACTION_FOR_ANONYMOUS_SECOND_CLASS_PARAM + param);
+                    secondClass.someAction();
+//                    System.out.println(SecondClass.SPECIFIC_ACTION_FOR_ANONYMOUS_SECOND_CLASS_PARAM + param);
+
+                    break;
+                }
+            }
+
         }
     };
 
