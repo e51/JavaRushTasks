@@ -8,8 +8,8 @@ import java.io.Serializable;
 /* 
 Переопределение сериализации
 */
-public class Solution implements {
-    private Thread runner;
+public class Solution implements Serializable, Runnable {
+    private transient Thread runner;
     private int speed;
 
     public Solution(int speed) {
@@ -20,6 +20,7 @@ public class Solution implements {
 
     public void run() {
         // do something here, doesn't matter what
+        System.out.println("inside run()");
     }
 
     /**
@@ -35,6 +36,8 @@ public class Solution implements {
 
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
+        runner = new Thread(this);
+        runner.start();
     }
 
     public static void main(String[] args) {

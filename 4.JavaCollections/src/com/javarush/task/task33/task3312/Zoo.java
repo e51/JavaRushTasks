@@ -1,8 +1,8 @@
 package com.javarush.task.task33.task3312;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+//import com.fasterxml.jackson.annotation.JsonSubTypes;
+//import com.fasterxml.jackson.annotation.JsonTypeInfo;
+//import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.ArrayList;
 import java.util.List;

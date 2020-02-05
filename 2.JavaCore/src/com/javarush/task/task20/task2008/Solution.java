@@ -1,6 +1,6 @@
 package com.javarush.task.task20.task2008;
 
-import java.io.Serializable;
+import java.io.*;
 
 /* 
 Как сериализовать Singleton?
@@ -43,6 +43,11 @@ public class Solution implements Serializable {
 
     public static class Singleton implements Serializable {
         private static Singleton ourInstance;
+
+        // implement readResolve method
+        private Object readResolve() {
+            return ourInstance;
+        }
 
         public static Singleton getInstance() {
             if (ourInstance == null) {

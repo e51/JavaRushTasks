@@ -12,7 +12,7 @@ public class Solution {
     public static void main(String[] args) {
         //исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
         try {
-            File your_file_name = File.createTempFile("your_file_name", null);
+            File your_file_name = File.createTempFile("task2001", null);
             OutputStream outputStream = new FileOutputStream(your_file_name);
             InputStream inputStream = new FileInputStream(your_file_name);
 
@@ -24,6 +24,7 @@ public class Solution {
             somePerson.load(inputStream);
             inputStream.close();
             //check here that ivanov equals to somePerson - проверьте тут, что ivanov и somePerson равны
+            System.out.println(ivanov.equals(somePerson));
 
         } catch (IOException e) {
             //e.printStackTrace();
@@ -68,10 +69,34 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            outputStream.write(name.getBytes());
+            outputStream.write("\n".getBytes());
+            for (int i = 0; i < assets.size(); i++) {
+                outputStream.write("Asset:yes".getBytes());
+                outputStream.write("\n".getBytes());
+                outputStream.write(assets.get(i).getName().getBytes());
+                outputStream.write("\n".getBytes());
+                outputStream.write(String.valueOf(assets.get(i).getPrice()).getBytes());
+                outputStream.write("\n".getBytes());
+            }
+
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+            String name = br.readLine();
+            this.name = name;
+
+            while (br.ready()) {
+                String line = br.readLine();
+                if ("Asset:yes".equals(line)) {
+                    String assetName = br.readLine();
+                    String assetPrice = br.readLine();
+
+                    this.assets.add(new Asset(assetName, Double.valueOf(assetPrice)));
+                }
+            }
         }
     }
 }

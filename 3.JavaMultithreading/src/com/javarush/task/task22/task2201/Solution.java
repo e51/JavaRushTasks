@@ -32,6 +32,24 @@ public class Solution {
     }
 
     public synchronized String getPartOfString(String string, String threadName) {
-        return null;
+        int pos1 = string.indexOf('\t');
+        int pos2 = string.lastIndexOf('\t');
+
+        try {
+            if (pos1 == pos2) {
+                pos2 = -1;
+            }
+            return string.substring(pos1 + 1, pos2);//.trim();
+
+        } catch(RuntimeException e) {
+            switch (threadName) {
+                case Solution.FIRST_THREAD_NAME:
+                    throw new StringForFirstThreadTooShortException(e);
+                case SECOND_THREAD_NAME:
+                    throw new StringForSecondThreadTooShortException(e);
+                default:
+                    throw new RuntimeException(e);
+            }
+        }
     }
 }

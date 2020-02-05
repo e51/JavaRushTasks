@@ -3,7 +3,7 @@ package com.javarush.task.task25.task2503;
 import java.util.LinkedList;
 import java.util.List;
 
-public enum Column {
+public enum Column implements Columnable {
     Customer("Customer"),
     BankName("Bank Name"),
     AccountNumber("Account Number"),
@@ -48,9 +48,47 @@ public enum Column {
      *
      * @return список колонок
      */
+//    public static List<Column> getVisibleColumns() {
+//        List<Column> result = new LinkedList<>();
+//
+//        for (int i = 0; i < realOrder.length; i++) {
+//            if (realOrder[i] != -1) {
+//                result.add(Column.values()[i]);
+//            }
+//        }
+//
+//        return result;
+//    }
+//
+
     public static List<Column> getVisibleColumns() {
         List<Column> result = new LinkedList<>();
-
+        for (int i = 0; i < realOrder.length ; i++) {
+            if(realOrder[i] != -1)
+                result.add(Column.values()[i]);
+        }
+        result.sort((column, t1) -> (realOrder[column.ordinal()] >= realOrder[t1.ordinal()])? 1: -1);
         return result;
+    }
+
+
+    @Override
+    public String getColumnName() {
+        return columnName;
+    }
+
+    @Override
+    public boolean isShown() {
+        if (realOrder[this.ordinal()] == -1) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void hide() {
+        realOrder[this.ordinal()] = -1;
+        configureColumns(getVisibleColumns().toArray(new Column[0]));
+
     }
 }

@@ -13,6 +13,8 @@ public class Snake {
     private int x;
     private int y;
 
+    private boolean isAlive;
+
     public Snake(int x, int y) {
         this.x = x;
         this.y = y;
@@ -22,6 +24,7 @@ public class Snake {
     }
 
     public void draw(Game game) {
+
         game.setCellValue(snakeParts.get(0).x, snakeParts.get(0).y, HEAD_SIGN);
 
         for (int i = 1; i < snakeParts.size(); i++) {

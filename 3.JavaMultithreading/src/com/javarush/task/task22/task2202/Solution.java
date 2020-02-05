@@ -9,9 +9,22 @@ public class Solution {
     }
 
     public static String getPartOfString(String string) {
-        return null;
+
+        if (string == null)
+            throw new TooShortStringException();
+
+        String[] words = string.split(" ");
+        if (words.length < 5)
+            throw new TooShortStringException();
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i < 5; i++) {
+            sb.append(words[i]).append(" ");
+        }
+
+        return sb.toString().trim();
     }
 
-    public static class TooShortStringException {
+    public static class TooShortStringException extends RuntimeException {
     }
 }

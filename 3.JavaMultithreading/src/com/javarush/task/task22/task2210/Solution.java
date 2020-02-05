@@ -1,6 +1,10 @@
 package com.javarush.task.task22.task2210;
 
-/* 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+
+/*
 StringTokenizer
 */
 public class Solution {
@@ -8,6 +12,12 @@ public class Solution {
 
     }
     public static String [] getTokens(String query, String delimiter) {
-        return null;
+
+        StringTokenizer tokenizer = new StringTokenizer(query, delimiter);
+        List<String> list = new ArrayList<>();
+        while (tokenizer.hasMoreTokens())
+            list.add(tokenizer.nextToken());
+
+        return list.toArray(new String[list.size()]);
     }
 }

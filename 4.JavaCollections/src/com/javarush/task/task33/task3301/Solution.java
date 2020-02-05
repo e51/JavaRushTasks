@@ -30,8 +30,8 @@ public class Solution {
     }
 
     public static void convertToJSON(StringWriter writer, Object object) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(writer, object);
+//        ObjectMapper mapper = new ObjectMapper();
+//        mapper.writeValue(writer, object);
     }
 
     public static class Pet {

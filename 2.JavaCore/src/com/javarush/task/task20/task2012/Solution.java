@@ -17,7 +17,7 @@ public class Solution {
      * for displaying the [greeting] variable to the console.
      * @author JavaRush
      */
-    public static class OutputToConsole implements Serializable {
+    public static class OutputToConsole implements Externalizable {
         private int counter;
 
         /**

@@ -11,7 +11,7 @@ public class Solution {
         //вы можете найти your_file_name.tmp в папке TMP или исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
         try {
 
-            File yourFile = File.createTempFile("your_file_name", null);
+            File yourFile = File.createTempFile("task2004", null);
             OutputStream outputStream = new FileOutputStream(yourFile);
             InputStream inputStream = new FileInputStream(yourFile);
 
@@ -28,6 +28,7 @@ public class Solution {
 
             loadedObject.load(inputStream);
             //here check that the classWithStatic object is equal to the loadedObject object - проверьте тут, что classWithStatic и loadedObject равны
+            System.out.println(classWithStatic.equals(loadedObject));
 
             outputStream.close();
             inputStream.close();
@@ -48,10 +49,26 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            if (staticString != null) {
+                outputStream.write(staticString.getBytes());
+            } else {
+                outputStream.write("null".getBytes());
+            }
+            outputStream.write("\n".getBytes());
+            outputStream.write(String.valueOf(i).getBytes());
+            outputStream.write("\n".getBytes());
+            outputStream.write(String.valueOf(j).getBytes());
+            outputStream.write("\n".getBytes());
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+            while (br.ready()) {
+                staticString = br.readLine();
+                i = Integer.valueOf(br.readLine());
+                j = Integer.valueOf(br.readLine());
+            }
         }
 
         @Override
