@@ -23,6 +23,11 @@ public class Server {
 
         private String serverHandshake(Connection connection) throws IOException, ClassNotFoundException {
             String username = null;
+//            connection.send(new Message(MessageType.NAME_REQUEST));
+//            Message message = connection.receive();
+//            while (message.getType() == MessageType.USER_NAME) {
+//
+//            }
             while (true) {
                 connection.send(new Message(MessageType.NAME_REQUEST));
                 Message message = connection.receive();
@@ -35,6 +40,7 @@ public class Server {
                         break;
                     } else {
                         // Not OK
+//                        connection.send(new Message(MessageType.NAME_REQUEST));
                     }
                 }
             }
