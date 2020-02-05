@@ -18,16 +18,24 @@ public class Server {
 
         @Override
         public void run() {
-            super.run();
+            ConsoleHelper.writeMessage("Connection established with: " + socket.getRemoteSocketAddress());
+
+            try (Connection connection = new Connection(socket);) {
+                String username = serverHandshake(connection);
+                sendBroadcastMessage(new Message(MessageType.USER_ADDED, username));
+                notifyUsers(connection, username);
+                serverMainLoop(connection, username);
+                connectionMap.remove(username);
+                sendBroadcastMessage(new Message(MessageType.USER_REMOVED, username));
+                ConsoleHelper.writeMessage("Cоединение с удаленным адресом закрыто");
+            } catch (IOException | ClassNotFoundException e) {
+                ConsoleHelper.writeMessage("Ошибка при обмене данными с удаленным адресом");
+            }
+
         }
 
         private String serverHandshake(Connection connection) throws IOException, ClassNotFoundException {
             String username = null;
-//            connection.send(new Message(MessageType.NAME_REQUEST));
-//            Message message = connection.receive();
-//            while (message.getType() == MessageType.USER_NAME) {
-//
-//            }
             while (true) {
                 connection.send(new Message(MessageType.NAME_REQUEST));
                 Message message = connection.receive();
@@ -40,7 +48,6 @@ public class Server {
                         break;
                     } else {
                         // Not OK
-//                        connection.send(new Message(MessageType.NAME_REQUEST));
                     }
                 }
             }
