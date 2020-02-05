@@ -20,6 +20,27 @@ public class Server {
         public void run() {
             super.run();
         }
+
+        private String serverHandshake(Connection connection) throws IOException, ClassNotFoundException {
+            String username = null;
+            while (true) {
+                connection.send(new Message(MessageType.NAME_REQUEST));
+                Message message = connection.receive();
+                if (message.getType() == MessageType.USER_NAME) {
+                    username = message.getData();
+                    if (username != null && !username.isEmpty() && !connectionMap.containsKey(username)) {
+                        // OK
+                        connectionMap.put(username, connection);
+                        connection.send(new Message(MessageType.NAME_ACCEPTED));
+                        break;
+                    } else {
+                        // Not OK
+                    }
+                }
+            }
+
+            return username;
+        }
     }
 
     public static void sendBroadcastMessage(Message message) {
