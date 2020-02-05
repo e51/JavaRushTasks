@@ -19,6 +19,14 @@ public class Human implements Alive {
     public static final int FOURTH = 4;
     private int bloodGroup;
 
+    public String getPosition() {
+        return "Человек";
+    }
+
+    public void printData() {
+        System.out.println(getPosition() + ": " + name);
+    }
+
     public List<Human> getChildren() {
         return Collections.unmodifiableList(children);
     }
