@@ -15,6 +15,10 @@ public class Client {
 
     public class SocketThread extends Thread {
 
+        @Override
+        public void run() {
+            Client.this.notify();
+        }
     }
 
     protected String getServerAddress() {
@@ -45,4 +49,36 @@ public class Client {
             clientConnected = false;
         }
     }
+
+    public void run() {
+        SocketThread socketThread = getSocketThread();
+        socketThread.setDaemon(true);
+        socketThread.start();
+        synchronized (this) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (clientConnected) {
+            ConsoleHelper.writeMessage("Соединение установлено. Для выхода наберите команду 'exit'.");
+        } else {
+            ConsoleHelper.writeMessage("Произошла ошибка во время работы клиента.");
+        }
+
+        String text = null;
+        while (clientConnected && !"exit".equals(text = ConsoleHelper.readString())) {
+            if (shouldSendTextFromConsole()) {
+                sendTextMessage(text);
+            }
+        }
+
+    }
+
+    public static void main(String[] args) {
+        new Client().run();
+    }
+
 }
