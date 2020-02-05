@@ -49,7 +49,7 @@ public abstract class Car {
     public int getNumberOfPassengersCanBeTransferred() {
         if (canPassengersBeTransferred())
             return numberOfPassengers;
-
+        
         return 0;
 //        return canPassengersBeTransferred() ? numberOfPassengers : 0;
     }
