@@ -9,6 +9,7 @@ public class Student extends Human {
     private String university;
     private Date beginningOfSession;
     private Date endOfSession;
+    private int course;
 
     public Student(String name, int age, double averageGrade) {
         super(name, age);
@@ -17,6 +18,10 @@ public class Student extends Human {
 
     public void live() {
         learn();
+    }
+
+    public int getCourse() {
+        return course;
     }
 
     public void learn() {
