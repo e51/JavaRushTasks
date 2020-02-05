@@ -28,6 +28,7 @@ public class Server {
                 connectionMap.remove(username);
                 sendBroadcastMessage(new Message(MessageType.USER_REMOVED, username));
                 ConsoleHelper.writeMessage("Cоединение с удаленным адресом закрыто");
+
             } catch (IOException | ClassNotFoundException e) {
                 ConsoleHelper.writeMessage("Ошибка при обмене данными с удаленным адресом");
             }
